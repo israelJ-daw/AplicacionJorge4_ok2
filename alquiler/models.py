@@ -1,6 +1,25 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class Usuario(models.Model):
+class UsuarioLogin (AbstractUser):
+    ADMINISTRADOR = 1 
+    ANFRITION = 2
+    USUARIO = 3     
+    ROLES = (
+        (ADMINISTRADOR, 'administrador'),
+        (ANFRITION, 'anfrition'),
+        (USUARIO, 'Usuario'),
+        ),
+
+    rol = models.PositiveSmallIntegerField(
+        choices=ROLES,default=3
+    )
+
+class Usuario(models.Model): 
+    
+    usaurio = models.OneToOneField(UsuarioLogin , on_delete=models.CASCADE)
+
+    
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     email = models.EmailField(max_length=254,)
@@ -77,5 +96,10 @@ class CategoriaPrincipal(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='categoria_principal')
     propiedad = models.ForeignKey(Propiedad, on_delete=models.CASCADE, related_name='categoria_principal')
 
-
-
+    
+class Anfrition(models.Model):
+    usuario = models.OneToOneField(UsuarioLogin , on_delete=models.CASCADE)
+     
+    telefono = models.CharField(max_length=20, blank=True)
+    fecha_registro = models.DateTimeField(db_column="fecha")
+    

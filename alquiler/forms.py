@@ -1,5 +1,6 @@
 from django import forms
 from .models import *  
+from django.contrib.auth.forms import UserCreationForm
 
 # Formulario para Usuario
 class UsuarioForm(forms.ModelForm):
@@ -164,3 +165,18 @@ class PrioridadForm(forms.ModelForm):
             if numero < 1 or numero > 10:
                 raise forms.ValidationError("El número debe estar entre 1 y 10")
         return numero
+
+
+
+#Formulario de registro 
+class RegistroForm (UserCreationForm):
+    roles = (
+                (UsuarioLogin.ANFRITION, 'anfrition'),
+                (UsuarioLogin.USUARIO, 'usuario'),
+    )
+    
+    rol =   forms.ChoiceField(choices=roles)
+    class Meta:
+        model = UsuarioLogin
+        fields = ['username' , 'email', 'password1', 'password2', 'rol']
+

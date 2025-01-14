@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django_seed',
     'django_bootstrap5',
     'django_bootstrap_icons',
+    'django.contrib.auth',  
+    'django.contrib.contenttypes', 
+
 
 ]
 
@@ -52,6 +55,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',    
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -125,3 +131,5 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com','0.0.0.0'] 
+
+AUTH_USER_MODEl='alquiler.Usuario'
