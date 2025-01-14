@@ -9,7 +9,7 @@ class UsuarioLogin (AbstractUser):
         (ADMINISTRADOR, 'administrador'),
         (ANFRITION, 'anfrition'),
         (USUARIO, 'Usuario'),
-        ),
+        )
 
     rol = models.PositiveSmallIntegerField(
         choices=ROLES,default=3

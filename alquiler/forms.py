@@ -170,12 +170,13 @@ class PrioridadForm(forms.ModelForm):
 
 #Formulario de registro 
 class RegistroForm (UserCreationForm):
-    roles = (
+    ROLES = (
                 (UsuarioLogin.ANFRITION, 'anfrition'),
                 (UsuarioLogin.USUARIO, 'usuario'),
     )
     
-    rol =   forms.ChoiceField(choices=roles)
+    rol =   forms.ChoiceField(choices=ROLES)
+    
     class Meta:
         model = UsuarioLogin
         fields = ['username' , 'email', 'password1', 'password2', 'rol']
